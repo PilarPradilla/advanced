@@ -1,0 +1,184 @@
+"""
+This file contains the code for a menu which can add vehicle 
+information and display the registered information.
+
+Autor: Maria del Pilar Pradilla Cely
+"""
+
+#==================== Class Engine ===============================
+class Engine():
+  """
+  This is a class about the vehicle engine.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - __str__(): This is the toString method of the class
+  """
+  def __init__(self, type: str, potency: float, weight: float):
+    self.type = type
+    self.potency = potency
+    self.weight = weight
+
+  def __str__(self) -> str:
+      return f"(Type: {self.type}, Potency: {self.potency}, Weight: {self.weight})"
+
+#==================== Class Vehicle ===============================
+class Vehicle:
+  """
+  This is a class about the vehicle.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - calculate_gas_consumption(): This method calculate the gas consumption
+  - __str__(): This is the toString method of the class
+  """
+
+  def __init__(self, engine: Engine, chasis: str, model: str, year: int):
+      if not chasis in ["A", "B"]:
+        raise ValueError("This chasis is not valid.")
+      self.engine = engine
+      self.chasis = chasis
+      self.model = model
+      self.gas_consumption = self.calculate_gas_consumption()
+      self.year = year
+    
+  def calculate_gas_consumption(self) -> float:
+    """
+    This method calculate the gas consumption.
+    Returns:
+    - float: the gas consumption of the vehicle
+    """
+    if self.chasis == 'A':
+         gas_consumption = 1.1*self.engine.potency + 0.2 * self.engine.weight - (0.3)
+            
+    elif self.chasis == 'B':
+          gas_consumption = 1.1*self.engine.potency + 0.2 * self.engine.weight - (0.5)
+    
+    return gas_consumption
+
+  def __str__(self) -> str:
+    return f"Engine: {self.engine}, Chasis: {self.chasis}, Model: {self.model}, Gas consumption: {self.gas_consumption}, Year: {self.year}"
+
+#==================== Class Car ===============================
+class Car(Vehicle):
+  """
+  This is a class about the vehicle car.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - __str__(): This is the toString method of the class
+  """
+
+  def __init__(self, engine, chasis, model, year, color: str):
+    super().__init__(engine, chasis, model, year)
+    self.color = color
+  
+  def __str__(self) -> str:
+    return f"Car = {super().__str__()}, Color: {self.color}"
+
+#==================== Class Truck ===============================
+class Truck(Vehicle):
+  """
+  This is a class about the vehicle truck.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - __str__(): This is the toString method of the class
+  """
+
+  def __init__(self, engine, chasis, model, year):
+    super().__init__(engine, chasis, model, year)
+
+  def __str__(self) -> str:
+    return f"Truck = {super().__str__()} "
+
+#==================== Class Yacht ===============================
+class Yacht(Vehicle):
+  """
+  This is a class about the vehicle yacht.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - __str__(): This is the toString method of the class
+  """
+
+  def __init__(self, engine, chasis, model, year, passenger_capacity: int):
+    super().__init__(engine, chasis, model, year)
+    self.passenger_capacity = passenger_capacity
+
+  def __str__(self) -> str:
+    return f"Yacht = {super().__str__()}, Passenger capacity: {self.passenger_capacity}"
+
+#==================== Class Motorcycle ===============================
+class Motorcycle(Vehicle):
+  """
+  This is a class about the vehicle motorcycle.
+
+  Methods:
+  - __init__(): This is the constructor method of the class
+  - __str__(): This is the toString method of the class
+  """
+
+  def __init__(self, engine, chasis, modelo, year):
+    super().__init__(engine, chasis, model, year)
+
+  def __str__(self) -> str:
+    return f"Motorcycle = {super().__str__()} "
+
+list = [Car(Engine("jd", 34,434),"A","x",343, "black"), Truck(Engine("jd", 34,434),"A","x",343)]
+
+#==================== Menu ===============================
+while (True):
+  print("""Menu:
+  1. Add vehicle
+  2. View registered vehicles
+  3. Exit
+  """)
+  x = int(input("Enter the number of the action you want to perform. "))
+
+#==================== Add vehicle ===============================
+  if x == 1:
+    print("""Which vehicle you want to add?
+    1. Car
+    2. Truck
+    3. Yacht
+    4. Motorcycle
+    """)
+    aux = int(input("Enter the number of the vehicle. "))
+    
+    engine_type = input("What is the type of vehicle engine? ")
+    engine_potency = float(input("What is the potency of vehicle engine? "))
+    engine_weight = float(input("What is the weight of vehicle engine? "))
+    chasis = input("What is the type of chassis? (A or B) ")
+    model = input("What is the model of the vehicle? ")
+    year = int(input("What is the year of the vehicle? "))
+
+    if aux == 1:
+      color = input("What is the color of the car? ")
+      Car_1 = Car(Engine(engine_type, engine_potency, engine_weight),chasis, model, year, color)
+      list.extend([Car_1])
+    elif aux == 2:
+      Truck_1 = Truck(Engine(engine_type, engine_potency, engine_weight),chasis, model, year)
+      list.extend([Truck_1])
+    elif aux == 3:
+      passenger_capacity = int(input("What is the passenger capacity of the yacht? "))
+      Yacht_1 = Yacht(Engine(engine_type, engine_potency, engine_weight),chasis, model, year, passenger_capacity)
+      list.extend([Yacht_1])
+    elif aux == 4:
+      Motorcycle_1 = Motorcycle(Engine(engine_type, engine_potency, engine_weight),chasis, model, year)
+      list.extend([Motorcycle_1])
+    else:
+      print("The option is not valid. ")
+
+#==================== View registered vehicles ===============================  
+  elif x == 2:
+    print("Registered vehicles: ")
+    for elem in list:
+      print(elem)
+    print()
+
+#==================== Exit ===============================
+  elif x==3:
+    break
+  else:
+    break
