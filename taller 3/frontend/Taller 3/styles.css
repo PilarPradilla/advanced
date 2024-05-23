@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+
+body{
+    background: #8CBBD6;
+    margin: 30px;
+}
+
+h1{
+    font-size: 50px;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+}
+
+.container_menu, .catalog .container_catalog, .container_add{
+    background: white;
+    padding: 10px 20px;
+}
+
+.container_menu h2, .catalog h2{
+    font-size: 20px;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 300;
+}
+
+.container_menu .menu-link{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+.container_menu .menu-link:hover{
+    color: #4f6979;
+    text-decoration: underline;
+}
+
+.catalog h2, .search h2, .add h2{
+    font-size: 30px;
+    font-family: "Poetsen One", sans-serif;
+}
+
+.catalog table{
+    border: #4f6979;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.catalog table td, .catalog table tr{
+    width: 100px;
+    height: 50px;
+}
+
+.search .table{
+    background: white;
+    border: #4f6979;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+}
+
+.table td, .table tr{
+    width: 100px;
+    height: 50px;
+}
+
+
+.container_search{
+    padding: 10px 20px;
+}
+
+ul, ol {
+    list-style:none;
+}
+
+
+.filter {
+    width:500px;
+    margin:0 auto;
+    background: white;
+}
+
+.filer > li {
+    float:left;
+}
+
+.filter li {
+    background-color:#ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration:none;
+    padding:10px 12px;
+    display:block;
+}
+
+.filter li:hover {
+    background-color:#afafaf;
+}
+
+.filter li ul {
+    display:none;
+    position:absolute;
+    min-width:140px;
+}
+
+.filter li:hover > ul {
+    display:block;
+}
+
+.filter li ul li {
+    position:relative;
+}
+
+.filter li ul li ul {
+    right:-140px;
+    top:0px;
+}
+
+.container_add{
+    display: flex;
+    flex-direction: column;
+}
+
+.container_add label, .container_add input{
+    padding: 10px 0;
+}
