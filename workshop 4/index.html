@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Workshop 4 - AP</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="This is a simple example to explore OSI layers in a simple network">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+    </head>
+    <body>
+        <h1>Workshop 4 - AP</h1>
+        <h2>Full-Stack Test</h2>
+        <p>Click on the buttons to explore services</p>
+        <div>
+            <button onclick="hello_ud()">Hello</button>
+            <button onclick="callMessage()">Get Message</button>
+            <button onclick="callTable()">Get Table</button>
+        </div>
+        <div id="result"></div>
+        <script>
+            function hello_ud(){
+                alert("hello")
+            }
+
+            async function callMessage() {
+                try {
+                    const response = await fetch('http://localhost:5500/hello_ud');
+                    const product = await response.text();
+                    document.getElementById('result').textContent = product;
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+            async function callTable() {
+                try {
+                    const response = await fetch('http://localhost:5500/products');
+                    const product = await response.json();
+                    
+                    let table = '<table>';
+                    table += '<tr><th>ID</th><th>Name</th><th>Description</th></tr>';
+                    
+                    product.forEach(item => {
+                        table += `<tr><td>${item.id}</td><td>${item.name}</td><td>${item.description}</td></tr>`;
+                    });
+                    
+                    table += '</table>';
+                    
+                    document.getElementById('result').innerHTML = table;
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+
+        </script>
+    </body>
+</html>
