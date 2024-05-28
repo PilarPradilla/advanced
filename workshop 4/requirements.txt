@@ -1,7 +1,0 @@
-postgres
-uvicorn
-pydantic-settings
-pydantic
-sqlalchemy
-fastapi
-psycopg2-binary
